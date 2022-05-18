@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block heading %}
+    Create Product
+{% endblock %}
+{% block subheading %}
+    Create a product and assign starting inventory. Note in order to create
+    a product, at least one warehouse should be available.
+{% endblock %}
+{% block main %}
+    <section style="margin-left: 30px">
+        <form action="{{ url_for("createProduct") }}" method="post">
+            <label> Product Name (250 Max)</label>
+            <br>
+            <input type="text" maxlength="250" name="productName">
+            <br>
+            <label> Price (in $) </label>
+            <br>
+            <input type="number" name="productPrice">
+            <br>
+            <label>Choose a warehouse:</label>
+            <br>
+            <br>
+            <select name="selected_warehouse" id="selected_warehouse">
+            {% for i in contents %}
+                <option value="{{ i.warehouse_id }}"> {{ i.warehouse_name }}</option>
+            {% endfor %}
+            </select>
+            <br>
+            <label> Enter Qty </label>
+            <br>
+            <input type="number" name="productQty">
+            <br>
+            <input class="button" type="submit" value="Submit">
+        </form>
+    </section>
+{% endblock %}

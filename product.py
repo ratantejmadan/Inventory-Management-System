@@ -30,4 +30,8 @@ class Product:
         self.product_qty = 0
         self.product_warehouse = {}
 
+    def addWarehouse(self, warehouse_id: int, qty: int):
+
+        self.product_warehouse[warehouse_id] = qty
+        self.product_qty += qty
 
