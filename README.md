@@ -58,5 +58,6 @@ You can view all locations under View and Manage Locations
 
 You can edit any warehouse by clicking edit. Along with name and address, you can edit the product qty at that warehouse.
 
-<img width="1792" alt="Screen Shot 2022-05-22 at 5 41 55 PM" src="https://user-images.githubusercontent.com/70780442/169717563-89cee2ce-373d-4d0a-ae17-f57e56440dd6.png">
+<img width="1792" alt="Screen Shot 2022-05-22 at 5 56 04 PM" src="https://user-images.githubusercontent.com/70780442/169717635-89ea47ce-162a-4640-9ec4-c34b61786d0f.png">
+
 
