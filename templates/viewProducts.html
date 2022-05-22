@@ -14,7 +14,14 @@
     <br>
     </section>
     <section style="text-align: center">
-        <div style="margin-top: 30px; margin-left: 30px; margin-right: 50px">
+        <div style="margin: 30px 50px 200px 30px;">
+            {% with message = get_flashed_messages() %}
+                {% if message %}
+                    <div class="notification is-success">
+                        {{ message[0] }}
+                    </div>
+                {% endif %}
+            {% endwith %}
             <table class="table is-hoverable is-fullwidth">
                 <thead>
                 <tr>

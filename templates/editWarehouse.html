@@ -6,6 +6,13 @@
     Here you can view and manage all your locations.
 {% endblock %}
 {% block main %}
+    {% with message = get_flashed_messages() %}
+        {% if message %}
+            <div class="notification is-danger">
+                {{ message[0] }}
+            </div>
+        {% endif %}
+    {% endwith %}
     <form action="{{ url_for('updateWarehouse') }}" method="post">
         <section style="margin-top: 10px; margin-left: 30px; margin-right: 1200px">
             <div class="content is-normal">
@@ -14,12 +21,12 @@
             <div class="field">
                 <label class="label">Name</label>
                 <div class="control">
-                    <input name="w_name" class="input" type="text" placeholder="{{ content.warehouse_name }}" value="{{ content.warehouse_name }}">
+                    <input required name="w_name" class="input" type="text" placeholder="{{ content.warehouse_name }}" value="{{ content.warehouse_name }}">
                 </div>
                 <br>
                 <label class="label">Address</label>
                 <div class="control">
-                    <input name="w_address" class="input" type="text" placeholder="{{ content.warehouse_address}}" value="{{ content.warehouse_address }}">
+                    <input required name="w_address" class="input" type="text" placeholder="{{ content.warehouse_address}}" value="{{ content.warehouse_address }}">
                 </div>
                 <br>
                 <br>
@@ -42,7 +49,7 @@
                     {% for name, value in w_products.items() %}
                         <tr>
                             <td style="vertical-align: middle"> {{ name }} </td>
-                            <td style="vertical-align: middle"> <input name="{{ name }}_qty" class="input" type="number" placeholder="{{ value }}" value="{{ value }}"> </td>
+                            <td style="vertical-align: middle"> <input required name="{{ name }}_qty" class="input" type="number" placeholder="{{ value }}" value="{{ value }}"> </td>
                         </tr>
                     {% endfor %}
                     </tbody>

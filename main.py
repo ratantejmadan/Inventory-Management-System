@@ -1,5 +1,6 @@
+import sqlalchemy.exc
 from flask import Flask
-from flask import redirect, render_template, url_for
+from flask import redirect, render_template, url_for, flash
 from flask import request
 from flask_sqlalchemy import SQLAlchemy
 import product
@@ -229,6 +230,14 @@ def updateProduct():
 
     if name != selected_product.product_name:  # Updates name if changed
         entry.name = name
+        try:
+            db.session.commit()  # Commit changes
+        except Exception as e:
+            flash("Name already taken. Try a different name.")
+            db.session.rollback()
+            return redirect(url_for('editProduct',
+                                    p_id=selected_product.product_id))
+
     if price != selected_product.product_price:  # Updates price if changed
         entry.price = price
 
@@ -257,6 +266,8 @@ def updateProduct():
     # Updates everything
 
     update_everything()
+
+    flash("Update Successful")
 
     return redirect(url_for('viewProducts'))
 
@@ -308,9 +319,24 @@ def updateWarehouse():
 
     if name != selected_warehouse.warehouse_name:  # Updates if name is changed
         entry.name = name
+        try:
+            db.session.commit()  # Commit changes
+        except Exception as e:
+            flash("Name already taken. Try a different name.")
+            db.session.rollback()
+            return redirect(url_for('editWarehouse',
+                                    w_id=selected_warehouse.warehouse_id))
+
     if address != selected_warehouse.warehouse_address:  # Updates if address
         # if changed
         entry.address = address
+        try:
+            db.session.commit()  # Commit changes
+        except Exception as e:
+            flash("Address already taken. Try a different address.")
+            db.session.rollback()
+            return redirect(url_for('editWarehouse',
+                                    w_id=selected_warehouse.warehouse_id))
 
     w_products = []  # List of all products in the warehouse
 
@@ -337,6 +363,8 @@ def updateWarehouse():
 
     update_everything()     # Updates Everything
 
+    flash("Update Successful")
+
     return redirect(url_for('viewLocations'))
 
 
@@ -349,16 +377,25 @@ def createWarehouse():
 
     name = request.form.get('warehouseName')  # Gets name from form
     address = request.form.get('warehouseLocation')  # Gets address from form
+
     new_location = Locations(name=name, address=address)  # Initializes a
     # new location
+
     db.session.add(new_location)  # Adds to session
-    db.session.commit()  # Commit changes
+
+    try:
+        db.session.commit()  # Commit changes
+    except Exception as e:
+        flash("Name or Address already in use. Try again.")
+        db.session.rollback()
 
     w_id = Locations.query.filter_by(name=name).first()  # Gets ID
     # of created warehouse from database
 
     warehouses.append(warehouse.Warehouse(w_id.id, name, address))  # Adds
     # warehouse to global warehouse list
+
+    flash("Warehouse Created")
 
     return redirect(url_for('createWarehouse'))
 
@@ -379,11 +416,19 @@ def createProduct():
     qty = int(request.form.get('productQty'))  # Gets qty
     new_product = Product(name=name, price=price)  # Creates new product
     db.session.add(new_product)  # Adds to the current session
+
+    try:
+        db.session.commit()  # Commit changes
+    except Exception as e:
+        flash("Name already taken. Try a different name.")
+        db.session.rollback()
+
     p_id = Product.query.filter_by(name=name).first()  # Gets assigned
     # product id
     new_inventory = Inventory(warehouse_id=select_warehouse, product_id=p_id.id,
                               qty=qty)  # Creates entry for inventory table
     db.session.add(new_inventory)
+
     db.session.commit()  # Commit changes
 
     newProduct = product.Product(p_id.id, name, price)
@@ -394,6 +439,8 @@ def createProduct():
     for i in warehouses:
         if i.warehouse_id == select_warehouse:
             i.addProduct(newProduct.product_id, qty)
+
+    flash("Product Created.")
 
     return redirect(url_for('createProduct'))
 

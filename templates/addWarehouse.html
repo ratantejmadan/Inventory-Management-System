@@ -16,16 +16,23 @@
         <br>
     </section>
     <section style="margin-left: 30px; margin-right: 1200px; margin-top: 30px">
+        {% with message = get_flashed_messages() %}
+            {% if message %}
+                <div class="notification is-danger">
+                    {{ message[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
         <form action="{{ url_for("createWarehouse") }}" method="post">
             <div class="field">
                 <label class="label"> Warehouse Name (250 Max)</label>
                 <div class="control">
-                    <input class="input" type="text" maxlength="250" name="warehouseName">
+                    <input required class="input" type="text" maxlength="250" name="warehouseName">
                 </div>
                 <br>
                 <label class="label"> Warehouse Address (750 Max)</label>
                 <div class="control">
-                    <input class="input" type="text" maxlength="750" name="warehouseLocation">
+                    <input required class="input" type="text" maxlength="750" name="warehouseLocation">
                 </div>
                 <br>
                 <div class="control">

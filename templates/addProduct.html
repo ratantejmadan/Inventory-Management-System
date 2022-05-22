@@ -16,6 +16,13 @@
         <br>
     </section>
     <section style="margin-left: 30px; margin-right: 1200px; margin-top: 30px">
+        {% with message = get_flashed_messages() %}
+            {% if message %}
+                <div class="notification is-danger">
+                    {{ message[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
         <div class="content is-normal">
             <h1> Product Details </h1>
         </div>
@@ -23,12 +30,12 @@
             <div class="field">
                 <label class="label"> Product Name (250 Max)</label>
                 <div class="control">
-                    <input class="input" type="text" maxlength="250" name="productName">
+                    <input required class="input" type="text" maxlength="250" name="productName">
                 </div>
                 <br>
                 <label class="label"> Price (in $) </label>
                 <div class="control">
-                    <input class="input" type="number" step="any" name="productPrice">
+                    <input required class="input" type="number" step="any" name="productPrice">
                 </div>
                 <br>
                 <label class="label">Choose a warehouse:</label>
@@ -43,7 +50,7 @@
                 <br>
                 <label class="label"> Enter Qty </label>
                 <div class="control">
-                    <input class="input" type="number" step="any" name="productQty">
+                    <input required class="input" type="number" step="any" name="productQty">
                 </div>
                 <br>
                 <div style="margin-bottom: 200px">
