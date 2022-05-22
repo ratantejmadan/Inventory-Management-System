@@ -13,5 +13,5 @@ Using Python, Flask, SQL Alchemy, and SQLlite 3, I have made a Inventory Managem
 
 # How to Use?
 
-The program has a few key pages. Starting of with Home page. It displays key info such as total number of products currently being managed and number of warerhouses/locations. 
+The program has a few key pages. Starting of with Home page. It displays key info such as total number of products currently being managed and number of warehouses/locations. 
 
