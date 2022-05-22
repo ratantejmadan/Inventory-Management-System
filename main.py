@@ -1,4 +1,3 @@
-import sqlalchemy.exc
 from flask import Flask
 from flask import redirect, render_template, url_for, flash
 from flask import request
@@ -48,9 +47,6 @@ class Inventory(db.Model):
     product_id = db.Column(db.Integer)
     qty = db.Column(db.Integer)
 
-
-warehouses: list[warehouse.Warehouse]
-products: list[product.Product]
 
 warehouses = []  # Keeps a track of all available warehouses throughout the
 # program
