@@ -7,17 +7,31 @@
     assigned while creating and managing products.
 {% endblock %}
 {% block main %}
-    <section style="margin-left: 30px">
+    <section style="margin-top: 10px; text-align: center">
+        <div style="display: inline">
+            <a class="button" href="{{ url_for('createProduct') }}"> Create Product </a>
+            <a class="button" href="{{ url_for('viewProducts') }}"> View Products </a>
+            <a class="button" href="{{ url_for('viewLocations') }}"> View Locations </a>
+        </div>
+        <br>
+    </section>
+    <section style="margin-left: 30px; margin-right: 1200px; margin-top: 30px">
         <form action="{{ url_for("createWarehouse") }}" method="post">
-            <label> Warehouse Name (250 Max)</label>
-            <br>
-            <input type="text" maxlength="250" name="warehouseName">
-            <br>
-            <label> Warehouse Address (750 Max)</label>
-            <br>
-            <input type="text" maxlength="750" name="warehouseLocation">
-            <br>
-            <input class="button" type="submit" value="Submit">
+            <div class="field">
+                <label class="label"> Warehouse Name (250 Max)</label>
+                <div class="control">
+                    <input class="input" type="text" maxlength="250" name="warehouseName">
+                </div>
+                <br>
+                <label class="label"> Warehouse Address (750 Max)</label>
+                <div class="control">
+                    <input class="input" type="text" maxlength="750" name="warehouseLocation">
+                </div>
+                <br>
+                <div class="control">
+                    <input class="button" type="submit" value="Submit">
+                </div>
+            </div>
         </form>
     </section>
 {% endblock %}

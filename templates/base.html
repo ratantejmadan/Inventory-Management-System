@@ -5,53 +5,68 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/main.css') }}">
     <title>Shopify Inventory Management System | Fall 2022 Internship (Backend)</title>
 </head>
-<body style="margin-top: 20px; margin-left: 30px">
-<section>
-    <div class="hero-head">
-        <nav class="navbar">
-            <div class="container">
-                <div class="navbar-menu">
-                    <div class="navbar-end">
-                        <a href="{{ url_for('home') }}" class="navbar-item">
-                            Home
-                        </a>
-                        <a href="{{ url_for('viewProducts') }}" class="navbar-item">
-                            View and Manage Products
-                        </a>
-                        <a href="{{ url_for('viewLocations') }}" class="navbar-item">
-                            View and Manage Locations
-                        </a>
-                        <a href="{{ url_for('addProduct') }}" class="navbar-item">
-                            Create Product
-                        </a>
-                        <a href="{{ url_for('addWarehouse') }}" class="navbar-item">
-                            Add Warehouse
-                        </a>
+<body style="margin-top: 20px; margin-left: 30px; margin-right: 30px">
+<div id="page-container">
+    <div id="content-wrap">
+        <section>
+            <div class="hero-head">
+                <nav class="navbar">
+                    <div class="container">
+                        <div class="navbar-menu">
+                            <div class="navbar-end">
+                                <a href="{{ url_for('home') }}" class="navbar-item">
+                                    Home
+                                </a>
+                                <a href="{{ url_for('viewProducts') }}" class="navbar-item">
+                                    View and Manage Products
+                                </a>
+                                <a href="{{ url_for('viewLocations') }}" class="navbar-item">
+                                    View and Manage Locations
+                                </a>
+                                <a href="{{ url_for('addProduct') }}" class="navbar-item">
+                                    Create Product
+                                </a>
+                                <a href="{{ url_for('addWarehouse') }}" class="navbar-item">
+                                    Add Warehouse
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </nav>
             </div>
-        </nav>
+        </section>
+        <section style="text-align: center; margin-top: 30px">
+            <div class="heading" style="font-size: 40px">
+                <h1>
+                    {% block heading %}
+                        Inventory Management System
+                    {% endblock %}
+                </h1>
+            </div>
+            <div>
+                <p class="subtitle" style="font-size: 20px; margin-bottom: 50px">
+                    {% block subheading %}
+                        Quick View
+                    {% endblock %}
+                </p>
+            </div>
+        </section>
+        {% block main %}
+        {% endblock %}
     </div>
-</section>
-<section style="text-align: center; margin-top: 30px">
-    <div class="heading" style="font-size: 40px">
-        <h1>
-            {% block heading %}
-                Inventory Management System
-            {% endblock %}
-        </h1>
-    </div>
-    <div>
-        <p class="subtitle" style="font-size: 20px; margin-bottom: 50px">
-            {% block subheading %}
-                Quick View
-            {% endblock %}
-        </p>
-    </div>
-</section>
-{% block main %}
-{% endblock %}
+    <footer id="footer" class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Inventory Management System</strong> by Ratantej Madan. Copyright 2022.
+                <br>
+                Check out my <a href="https://github.com/ratantejmadan"> GitHub </a> and
+                <a href="https://www.linkedin.com/in/ratantejmadan/"> LinkedIn </a>
+            </p>
+        </div>
+    </footer>
+</div>
 </body>
 </html>

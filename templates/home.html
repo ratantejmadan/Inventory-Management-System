@@ -6,4 +6,34 @@
     Quick View
 {% endblock %}
 {% block main %}
+    <section style="text-align: center; margin-left: 400px">
+        <div class="tile is-ancestor">
+            <div class="tile is-vertical is-8">
+                <div class="tile">
+                    <div class="tile is-parent is-vertical">
+                        <article class="tile is-child notification is-warning">
+                            <p class="title"> {{ products|length }}</p>
+                            <p class="subtitle">Products Available</p>
+                        </article>
+                    </div>
+                    <div class="tile is-parent is-vertical">
+                        <article class="tile is-child notification is-warning">
+                            <p class="title">{{ warehouses|length }}</p>
+                            <p class="subtitle">Locations Served</p>
+                        </article>
+                    </div>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child notification is-danger">
+                        <p class="title">Getting Started</p>
+                        <p class="subtitle">Quick Actions</p>
+                        <div class="content">
+                            <a class="button" href="{{ url_for('createProduct') }}"> Create Product </a>
+                            <a class="button" href="{{ url_for('createWarehouse') }}"> Create Warehouse </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

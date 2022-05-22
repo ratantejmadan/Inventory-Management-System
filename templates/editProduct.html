@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block heading %}
+    View and Manage Products
+{% endblock %}
+{% block subheading %}
+    Here you can view and manage all your products.
+{% endblock %}
+{% block main %}
+    <form action="{{ url_for('updateProduct') }}" method="post">
+    <section style="margin-top: 10px; margin-left: 30px; margin-right: 1200px">
+        <div class="content is-normal">
+            <h1> Product Details </h1>
+        </div>
+        <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+                <input name="p_name" class="input" type="text" placeholder="{{ content.product_name }}" value="{{ content.product_name }}">
+            </div>
+            <br>
+            <label class="label">Price (in $)</label>
+            <div class="control">
+                <input name="p_price" class="input" type="number" step="any" placeholder="$ {{ content.product_price }}" value="{{ content.product_price }}">
+            </div>
+            <br>
+            <br>
+            <div class="content is-normal">
+                <h2> Inventory </h2>
+            </div>
+        </div>
+    </section>
+    <br>
+    <section>
+        <div style="margin-left: 30px">
+            <table class="table is-hoverable">
+                <thead>
+                <tr>
+                    <th> Warehouse </th>
+                    <th> Available Qty </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for name, value in p_warehouses.items() %}
+                    <tr>
+                        <td style="vertical-align: middle"> {{ name }} </td>
+                        <td style="vertical-align: middle"> <input name="{{ name }}_qty" class="input" type="number" placeholder="{{ value }}" value="{{ value }}"> </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <br>
+    <br>
+    <div style="display: inline">
+        <input style="margin-left: 30px" class="button" type="submit" value="Submit">
+        <a class="button" href="{{ url_for('viewProducts') }}"> Back </a>
+    </div>
+    </form>
+{% endblock %}

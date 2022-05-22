@@ -6,8 +6,15 @@
     Here you can view and manage all your products.
 {% endblock %}
 {% block main %}
-    <section>
-        <div style="margin-top: 30px; margin-left: 10px; margin-right: 10px">
+    <section style="margin-top: 10px; text-align: center">
+    <div style="display: inline">
+        <a class="button" href="{{ url_for('createProduct') }}"> Create Product </a>
+        <a class="button" href="{{ url_for('createWarehouse') }}"> Create Warehouse </a>
+    </div>
+    <br>
+    </section>
+    <section style="text-align: center">
+        <div style="margin-top: 30px; margin-left: 30px; margin-right: 50px">
             <table class="table is-hoverable is-fullwidth">
                 <thead>
                 <tr>
@@ -23,7 +30,7 @@
                         <td style="vertical-align: middle"> {{ row.product_name }} </td>
                         <td style="vertical-align: middle"> $ {{ row.product_price }} </td>
                         <td style="vertical-align: middle"> {{ row.product_qty }} </td>
-                        <td style="vertical-align: middle"> <a href=""> Edit </a>  |  <a href="{{ url_for('deleteProduct', object_key= row.product_id) }}"> Delete </a></td>
+                        <td style="vertical-align: middle"> <a href="{{ url_for('editProduct', p_id = row.product_id) }}"> Edit </a>  |  <a href="{{ url_for('deleteProduct', object_key= row.product_id) }}"> Delete </a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

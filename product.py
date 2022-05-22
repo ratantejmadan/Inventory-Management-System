@@ -23,6 +23,13 @@ class Product:
 
     def __init__(self, product_id: int, product_name: str,
                  product_price: float):
+        """
+        Initializes a new Product
+
+        :param product_id: Product ID
+        :param product_name: Product Name
+        :param product_price: Product Price in $
+        """
 
         self.product_id = product_id
         self.product_name = product_name
@@ -31,6 +38,14 @@ class Product:
         self.product_warehouse = {}
 
     def addWarehouse(self, warehouse_id: int, qty: int):
+        """
+        Adds a new warehouse to the dictionary product_warehouses which keeps
+        a track of the warehouses and respective available inventory.
+
+        :param warehouse_id: Warehouse ID
+        :param qty: Available Qty
+        :return: None
+        """
 
         self.product_warehouse[warehouse_id] = qty
         self.product_qty += qty
